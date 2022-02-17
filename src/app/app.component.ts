@@ -4,6 +4,7 @@ import { DialogComponent } from "./components/dialog/dialog.component";
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ApiService } from "./services/api.service";
 
 @Component({
   selector: 'app-root',
@@ -12,29 +13,41 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class AppComponent {
 
-  productList: any = [];
-  displayedColumns: string[] = ['productName', 'category', 'date', 'condition', 'price', 'comment'];
+  displayedColumns: string[] = ['id', 'productName', 'category', 'date', 'condition', 'price', 'comment'];
+  dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog,
+              private api: ApiService) {}
 
   ngOnInit() {
-
+    this.getProducts();
   }
 
-  ngAfterViewInit() {
-    this.productList.paginator = this.paginator;
-    this.productList.sort = this.sort;
+  ngAfterViewInit() {  }
+
+  getProducts() {
+    this.api.getAllProducts()
+      .subscribe({
+        next: (res) => {
+          this.dataSource = new MatTableDataSource(res);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        },
+        error: (err) => {
+          alert('There was an error trying to fetch the products!' + err);
+        }
+      });
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.productList.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    if (this.productList.paginator) {
-      this.productList.paginator.firstPage();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
     }
   }
 

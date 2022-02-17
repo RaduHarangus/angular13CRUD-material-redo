@@ -32,18 +32,20 @@ export class DialogComponent implements OnInit {
   }
 
   addProduct() {
-    this.api.addProduct(this.productForm.value)
-      .subscribe({
-        next: (res) => {
-          alert('Product added successfully!');
-          this.productForm.reset();
-          this.dialogRef.close('save');
-          this.getAllProducts();
-        },
-        error: (err) => {
-          alert('There was a problem trying to add the product!' + err);
-        }
-      });
+    if(this.productForm.valid){
+      this.api.addProduct(this.productForm.value)
+        .subscribe({
+          next: (res) => {
+            alert('Product added successfully!');
+            this.productForm.reset();
+            this.dialogRef.close('save');
+            this.getAllProducts();
+          },
+          error: (err) => {
+            alert('There was a problem trying to add the product!' + err);
+          }
+        });
+    }
   }
 
   getAllProducts() {

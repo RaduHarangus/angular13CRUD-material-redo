@@ -5,14 +5,13 @@
   <button mat-raised-button color="warn" (click)="openDialog()">Add Product</button>
 </mat-toolbar>
 
-<mat-form-field appearance="standard">
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
-</mat-form-field>
-
 <div class="container">
+  <mat-form-field appearance="standard">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+  </mat-form-field>
   <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="productList" matSort>
+    <table mat-table [dataSource]="dataSource" matSort>
 
       <!-- ID Column -->
       <ng-container matColumnDef="id">
@@ -23,7 +22,7 @@
       <!-- product name Column -->
       <ng-container matColumnDef="productName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </th>
-        <td mat-cell *matCellDef="let row"> {{row.productName}}% </td>
+        <td mat-cell *matCellDef="let row"> {{row.productName}} </td>
       </ng-container>
 
       <!-- Category Column -->
@@ -35,7 +34,7 @@
       <!-- Date Column -->
       <ng-container matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-        <td mat-cell *matCellDef="let row"> {{row.date}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.date | date}} </td>
       </ng-container>
 
       <!-- Condition Column -->
@@ -47,7 +46,7 @@
       <!-- Price Column -->
       <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
-        <td mat-cell *matCellDef="let row"> {{row.price}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.price | currency}} </td>
       </ng-container>
 
       <!-- Comment Column -->
