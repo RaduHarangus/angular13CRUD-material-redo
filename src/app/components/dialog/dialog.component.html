@@ -1,13 +1,13 @@
 <h1 mat-dialog-title>Add Product Form</h1>
 <mat-dialog-content>
-  <form class="example-form">
+  <form class="example-form" [formGroup]="productForm">
     <mat-form-field appearance="outline">
       <mat-label>Product Name</mat-label>
-      <input matInput placeholder="Name">
+      <input formControlName="productName" matInput placeholder="Name">
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Product Category</mat-label>
-      <mat-select>
+      <mat-select formControlName="category">
         <mat-option value="smartphones">Smart Phones</mat-option>
         <mat-option value="tablets">Tablets</mat-option>
         <mat-option value="laptops">Laptops</mat-option>
@@ -15,29 +15,30 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Choose a date</mat-label>
-      <input matInput [matDatepicker]="picker">
+      <input formControlName="date" matInput [matDatepicker]="picker">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <label id="example-radio-group-label" style="font-size: 20px;">Product Condition</label>
     <mat-radio-group
       aria-labelledby="example-radio-group-label"
-      class="example-radio-group">
+      class="example-radio-group"
+      formControlName="condition">
       <mat-radio-button class="example-radio-button" *ngFor="let condition of conditions" [value]="condition">
         {{condition}}
       </mat-radio-button>
     </mat-radio-group>
     <mat-form-field appearance="outline">
       <mat-label>Price</mat-label>
-      <input type="number" matInput placeholder="Price">
+      <input formControlName="price" type="number" matInput placeholder="Price">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Comment</mat-label>
-      <textarea matInput placeholder="Comment"></textarea>
+      <textarea formControlName="comment" matInput placeholder="Comment"></textarea>
     </mat-form-field>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-raised-button color="warn">Close</button>
-  <button mat-raised-button color="primary">Save</button>
+  <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  <button mat-raised-button color="primary" (click)="addProduct()">Save</button>
 </mat-dialog-actions>
