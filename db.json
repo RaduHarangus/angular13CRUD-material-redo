@@ -8,6 +8,15 @@
       "price": 56,
       "comment": "ytjut",
       "id": 1
+    },
+    {
+      "productName": "gyu",
+      "category": "laptops",
+      "date": "2022-02-16T22:00:00.000Z",
+      "condition": "Brand New",
+      "price": 56,
+      "comment": "",
+      "id": 2
     }
   ],
   "comments": [
