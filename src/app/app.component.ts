@@ -26,8 +26,6 @@ export class AppComponent {
     this.getProducts();
   }
 
-  ngAfterViewInit() {  }
-
   getProducts() {
     this.api.getAllProducts()
       .subscribe({
@@ -38,6 +36,25 @@ export class AppComponent {
         },
         error: (err) => {
           alert('There was an error trying to fetch the products!' + err);
+        }
+      });
+  }
+
+  editProduct(row: any) {
+    this.dialog.open(DialogComponent, {
+      width: '30%',
+      data: row
+    });
+  }
+
+  deleteProduct(id: number) {
+    this.api.deleteProduct(id)
+      .subscribe({
+        next: (res) => {
+          alert('Product deleted!');
+        },
+        error: (err) => {
+          alert('The product could not be removed!' + err);
         }
       });
   }

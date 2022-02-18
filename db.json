@@ -1,22 +1,13 @@
 {
   "products": [
     {
-      "productName": "6tyt",
+      "productName": "OnePlus",
       "category": "tablets",
       "date": "2022-02-16T22:00:00.000Z",
       "condition": "Brand New",
       "price": 56,
       "comment": "ytjut",
       "id": 1
-    },
-    {
-      "productName": "gyu",
-      "category": "laptops",
-      "date": "2022-02-16T22:00:00.000Z",
-      "condition": "Brand New",
-      "price": 56,
-      "comment": "",
-      "id": 2
     },
     {
       "productName": "samsung S9",
@@ -35,6 +26,24 @@
       "price": 100,
       "comment": "no comment",
       "id": 4
+    },
+    {
+      "productName": "asus",
+      "category": "laptops",
+      "date": "2022-02-17T22:00:00.000Z",
+      "condition": "Brand New",
+      "price": 2640,
+      "comment": "a very good laptop",
+      "id": 5
+    },
+    {
+      "productName": "Huawei",
+      "category": "tablets",
+      "date": "2022-02-16T22:00:00.000Z",
+      "condition": "Brand New",
+      "price": 56,
+      "comment": "ytjut",
+      "id": 6
     }
   ],
   "comments": [
