@@ -1,15 +1,6 @@
 {
   "products": [
     {
-      "productName": "OnePlus",
-      "category": "tablets",
-      "date": "2022-02-16T22:00:00.000Z",
-      "condition": "Brand New",
-      "price": 56,
-      "comment": "ytjut",
-      "id": 1
-    },
-    {
       "productName": "samsung S9",
       "category": "smartphones",
       "date": "2022-02-15T22:00:00.000Z",
@@ -17,15 +8,6 @@
       "price": 550,
       "comment": "A very fine phone",
       "id": 3
-    },
-    {
-      "productName": "iphone 7",
-      "category": "smartphones",
-      "date": "2022-01-31T22:00:00.000Z",
-      "condition": "Refurbished",
-      "price": 100,
-      "comment": "no comment",
-      "id": 4
     },
     {
       "productName": "asus",

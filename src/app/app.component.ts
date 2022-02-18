@@ -44,6 +44,10 @@ export class AppComponent {
     this.dialog.open(DialogComponent, {
       width: '30%',
       data: row
+    }).afterClosed().subscribe(result => {
+      if (result === 'update') {
+        this.getProducts();
+      }
     });
   }
 
@@ -52,6 +56,7 @@ export class AppComponent {
       .subscribe({
         next: (res) => {
           alert('Product deleted!');
+          this.getProducts();
         },
         error: (err) => {
           alert('The product could not be removed!' + err);
@@ -71,7 +76,9 @@ export class AppComponent {
   openDialog() {
     const dialogRef = this.dialog.open(DialogComponent, {width: '30%'});
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if (result === 'save') {
+        this.getProducts();
+      }
     });
   }
 }

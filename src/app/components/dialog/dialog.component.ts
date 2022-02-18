@@ -41,24 +41,21 @@ export class DialogComponent implements OnInit {
     } else {
       this.actionBtn = 'Save';
     }
-
-    this.getAllProducts();
   }
 
   addProduct() {
     if (this.editData) {
-        this.api.putProduct(this.editData.id, this.productForm.value)
-          .subscribe({
-            next: (res) => {
-              alert('Product updated successfully!');
-              this.productForm.reset();
-              this.dialogRef.close('update');
-              this.getAllProducts();
-            },
-            error: (err) => {
-              alert('There was a problem trying to update the product!' + err);
-            }
-          });
+      this.api.putProduct(this.editData.id, this.productForm.value)
+        .subscribe({
+          next: (res) => {
+            alert('Product updated successfully!');
+            this.productForm.reset();
+            this.dialogRef.close('update');
+          },
+          error: (err) => {
+            alert('There was a problem trying to update the product!' + err);
+          }
+        });
     } else {
       if(this.productForm.valid){
         this.api.addProduct(this.productForm.value)
@@ -67,7 +64,6 @@ export class DialogComponent implements OnInit {
               alert('Product added successfully!');
               this.productForm.reset();
               this.dialogRef.close('save');
-              this.getAllProducts();
             },
             error: (err) => {
               alert('There was a problem trying to add the product!' + err);
@@ -75,36 +71,5 @@ export class DialogComponent implements OnInit {
           });
       }
     }
-
   }
-
-  // updateProduct() {
-  //   if(this.productForm.valid){
-  //     this.api.updateProduct(this.productForm.id, this.productForm.value)
-  //       .subscribe({
-  //         next: (res) => {
-  //           alert('Product added successfully!');
-  //           this.productForm.reset();
-  //           this.dialogRef.close('save');
-  //           this.getAllProducts();
-  //         },
-  //         error: (err) => {
-  //           alert('There was a problem trying to add the product!' + err);
-  //         }
-  //       });
-  //   }
-  // }
-
-  getAllProducts() {
-    this.api.getAllProducts()
-      .subscribe({
-        next: (res) => {
-          this.productList = res;
-        },
-        error: (err) => {
-          alert('There was a problem fetching the product list!' + err);
-        }
-      });
-  }
-
 }
